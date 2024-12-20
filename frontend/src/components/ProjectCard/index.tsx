@@ -61,14 +61,13 @@ const ProjectSettingDialog = (props: {
 }) => {
   const form = useForm<IExportSettings>({});
   const { setValue } = form;
+  setValue("exportPath", "minigame");
   const [open, setOpen] = useState(false);
   if (props.exportSettings) {
     setValue("deviceOrientation", props.exportSettings.deviceOrientation);
     setValue("exportPath", props.exportSettings.exportPath);
     setValue("projectType", props.exportSettings.projectType);
     setValue("appid", props.exportSettings.appid);
-  } else {
-    setValue("exportPath", "./minigame");
   }
   const onSubmit: SubmitHandler<IExportSettings> = (data) => {
     window.pywebview.api
