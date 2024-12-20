@@ -97,6 +97,7 @@ function App() {
               <ProjectCard
                 key={index}
                 icon={project.icon}
+                iconPath={project.iconPath}
                 path={project.path}
                 name={project.name}
                 description={project.description}

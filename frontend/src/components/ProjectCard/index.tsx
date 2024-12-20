@@ -39,6 +39,7 @@ export interface IProject {
   version: string;
   path: string;
   icon: string;
+  iconPath: string;
 }
 
 export interface ProjectCardProps extends IProject {
@@ -66,6 +67,8 @@ const ProjectSettingDialog = (props: {
     setValue("exportPath", props.exportSettings.exportPath);
     setValue("projectType", props.exportSettings.projectType);
     setValue("appid", props.exportSettings.appid);
+  } else {
+    setValue("exportPath", "./minigame");
   }
   const onSubmit: SubmitHandler<IExportSettings> = (data) => {
     window.pywebview.api
@@ -262,11 +265,26 @@ const ProjectCard = (props: ProjectCardProps) => {
   return (
     <Card key={props.key}>
       <CardHeader className="flex items-center space-x-3">
-        <img
-          src={`data:image/jpeg;base64,${props.icon}`}
-          width={64}
-          height={64}
-        ></img>
+        {(() => {
+          if (props.icon.indexOf(".svg") !== -1) {
+            return (
+              <img
+                src={`data:image/svg+xml;base64,${props.iconPath}`}
+                width={64}
+                height={64}
+              ></img>
+            );
+          } else {
+            return (
+              <img
+                src={`data:image/jpeg;base64,${props.iconPath}`}
+                width={64}
+                height={64}
+              ></img>
+            );
+          }
+          return "";
+        })()}
         <CardTitle>{props.name}</CardTitle>
         <CardDescription>{props.description}</CardDescription>
         <CardDescription>Version:{props.version}</CardDescription>
