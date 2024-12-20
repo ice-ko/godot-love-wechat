@@ -1,0 +1,5 @@
+1、先把前端构建到gui目录中
+
+2、添加项目依赖：pip install -r requirements.txt
+
+3、生成exe命令：pyinstaller build-windows.spec
