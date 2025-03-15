@@ -45,5 +45,8 @@
   ],
   "devDependencies": {
     "run-script-os": "^1.1.6"
+  },
+  "dependencies": {
+    "pywebview-with-vite-react": "file:"
   }
 }
